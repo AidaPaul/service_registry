@@ -1,3 +1,5 @@
+from exceptions import NoServiceWithId
+
 class ServiceState:
 	unchanged = 0
 	changed = 1
@@ -30,6 +32,13 @@ class Service(object):
 			self.state = ServiceState.changed
 		else:
 			self.state = ServiceState.unchanged
+
+	@staticmethod
+	def get_service_by_id(id):
+		for service in Service.all_services:
+			if service.id == id:
+				return service
+		raise NoServiceWithId("there is no service with provided id")
 
 	@staticmethod
 	def update_service(service_to_update, new_service_name=None, new_service_version=None):
