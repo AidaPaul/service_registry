@@ -10,14 +10,14 @@ class Service(object):
 	def __init__(self, service_name, version):
 		self.service_name = service_name
 		self.initial_version = version
-		self.current_version = None
+		self.current_version = version
 		self.state = ServiceState.unchanged
 		self.id = Service.latest_id + 1
 		Service.latest_id += 1 
 		self.register()
 
 	def update_service_version(self, new_version):
-		self.version = new_version
+		self.current_version = new_version
 
 	def update_service_name(self, new_name):
 		self.name = new_name		
@@ -36,12 +36,10 @@ class Service(object):
 		if new_service_name is not None and new_service_version is None:
 			service_to_update.update_service_name(new_service_name)
 			service_to_update.change_state()
-		else if:
-			new_service_name is None and new_service_version is not None:
+		elif new_service_name is None and new_service_version is not None:
 			service_to_update.update_service_version(new_service_version)
 			service_to_update.change_state()
-		else if:
-			new_service_name is not None and new_service_version is not None:
+		elif new_service_name is not None and new_service_version is not None:
 			service_to_update.update_service_name(new_service_name)
 			service_to_update.update_service_version(new_service_version)
 			service_to_update.change_state()
