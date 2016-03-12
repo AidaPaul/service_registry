@@ -6,55 +6,61 @@ def passed(function):
 	print("+ " + function.__name__ + " passed")
 
 def n_passed(function):
-	print("\033[91m- " + function.__name__ + " not passed!!\033[0m")
+	print("\033[91m- " + function.__name__ + " did not passed!!\033[0m")
 
-def constructor_test():
-	myService = Service("test1", 0.1)
-	if myService.service_name == "test1" and myService.initial_version == 0.1:
-		passed(constructor_test)
+
+def add_service():
+	if ServiceHandler.add_service("add_service", 0.1) == ServiceState.created:
+		passed(add_service)
 	else:
-		n_passed(constructor_test)
+		n_passed(add_service)
 
-def update_service_name():
-	myService = Service("test1", 0.1)
-	Service.update_service(myService, new_service_name = "test2") ## updating name
-	if myService.service_name == "test2" and myService.current_version == 0.1 and myService.state == ServiceState.changed:
-		passed(update_service_name)
+def find_service1():
+	ServiceHandler.add_service("find_service1", 0.1)
+	ServiceHandler.add_service("find_service2", 0.1)
+	ServiceHandler.add_service("find_service2", 0.1)
+	if ServiceHandler.find_service("find_service2", 0.1) == 2:
+		passed(find_service1)
 	else:
-		n_passed(update_service_name)
-		print(myService.service_name)
+		n_passed(find_service)
 
-def update_service_version():
-	myService = Service("test1", 0.1)
-	Service.update_service(myService, new_service_version = 0.2) ## updating name
-	if myService.service_name == "test1" and myService.current_version == 0.2 and myService.state == ServiceState.changed:
-		passed(update_service_version)
+def find_service2():
+	if ServiceHandler.find_service("blalblalbla", 0.1) == 0:
+		passed(find_service2)
 	else:
-		n_passed(update_service_version)
+		n_passed(find_service2)
 
-def exception_test():
-	try:
-		Service.get_service_by_id(40)
-	except NoServiceWithId:
-		passed(exception_test)
-		return
-	n_passed(exception_test)
+def find_service3():
+	ServiceHandler.add_service("find_service1")
+	ServiceHandler.add_service("find_service2", 0.1)
+	ServiceHandler.add_service("find_service2", 0.1)
+	if ServiceHandler.find_service("find_service1") == 1:
+		passed(find_service3)
+	else:
+		n_passed(find_service3)
 
-def remove_service_test():
-	myService = Service("test1")
-	myService = Service("test2")
-	myService = Service("test3")
-	ServiceHandler.remove_service(2)
-	try:
-		Service.get_service_by_id(2)
-	except NoServiceWithId:
-		passed(remove_service_test)
-		return
-	n_passed(remove_service_test)
+def update_service():
+	if ServiceHandler.update_service(Service("update_service_test", 0.1), "updated_service") == ServiceState.changed:
+		passed(update_service)
+	else:
+		n_passed(update_service)
 
+def remove_service():
+	if ServiceHandler.remove_service(Service("blabla", 0.2)) == ServiceState.removed:
+		passed(remove_service)
+	else:
+		n_passed(remove_service)
 
-constructor_test()
-exception_test()
-update_service_name()
-update_service_version()
-remove_service_test()
+if __name__ == '__main__':
+	add_service()
+	ServiceHandler.clear_all_services()
+	find_service1()
+	ServiceHandler.clear_all_services()
+	find_service2()
+	ServiceHandler.clear_all_services()
+	find_service3()
+	ServiceHandler.clear_all_services()
+	update_service()
+	ServiceHandler.clear_all_services()
+	remove_service()
+	ServiceHandler.clear_all_services()

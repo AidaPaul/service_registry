@@ -11,7 +11,7 @@ class Service(object):
 	all_services = []
 	latest_id = 0
 
-	def __init__(self, service_name="noname", version=0):
+	def __init__(self, service_name="noname", version=None):
 		self.service_name = service_name
 		self.initial_version = version
 		self.current_version = version
@@ -57,7 +57,7 @@ class Service(object):
 	def find_service(name, version):
 		found_services_count = 0
 		for service in Service.all_services:
-			if service.service_name == name and service.version == version:
+			if service.service_name == name and service.current_version == version:
 				found_services_count += 1
 		return found_services_count
 
@@ -66,14 +66,18 @@ class Service(object):
 		if new_service_name is not None and new_service_version is None:
 			service_to_update.update_service_name(new_service_name)
 			service_to_update.change_state()
+			return service_to_update.state
 		elif new_service_name is None and new_service_version is not None:
 			service_to_update.update_service_version(new_service_version)
 			service_to_update.change_state()
+			return service_to_update.state
 		elif new_service_name is not None and new_service_version is not None:
 			service_to_update.update_service_name(new_service_name)
 			service_to_update.update_service_version(new_service_version)
 			service_to_update.change_state()
+			return service_to_update.state
 
 	@staticmethod
 	def remove_service(service):
 		Service.all_services.remove(service)
+		return ServiceState.removed
