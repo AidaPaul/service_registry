@@ -21,10 +21,10 @@ class Service(models.Model):
 		(STATUS.changed, 'changed')
 	)
 
-	service_name = models.CharField(max_length=30, help_text='service name')
+	service = models.CharField(max_length=30, help_text='service name')
 	version = models.CharField(max_length=10, help_text='service version')
-	status = models.CharField(max_length=15, choices=STATUS_CHOICES, default=STATUS.created)
+	change = models.CharField(max_length=15, choices=STATUS_CHOICES, default=STATUS.created)
 
 
 	def __str__(self):
-		return '{} - {}'.format(self.service_name, self.version)
+		return '{} - {}'.format(self.service, self.version)

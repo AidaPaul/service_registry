@@ -14,11 +14,11 @@ class ServiceUpdateModelSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Service
-		fields = ('status', )
+		fields = ('change', )
 
 	def update(self, instance, validated_data):
 
-		instance.status = 'changed'
+		instance.change = 'changed'
 		instance.save()
 
 		return instance
@@ -30,5 +30,5 @@ class ServiceRetriveModelSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Service
-		fields = ('service_name', 'version', 'count')
+		fields = ('service', 'version', 'count')
 

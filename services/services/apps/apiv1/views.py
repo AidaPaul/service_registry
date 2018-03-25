@@ -16,12 +16,6 @@ class ServiceCreateView(generics.CreateAPIView):
 	serializer_class = ServiceModelSerializer
 
 
-	def post(self, request, *args, **kwargs):
-		self.create(request, *args, **kwargs)
-		return Response({'change':'created'}, status=status.HTTP_201_CREATED)
-
-
-
 class ServiceUpdateView(generics.UpdateAPIView):
 
 	serializer_class = ServiceUpdateModelSerializer
@@ -32,6 +26,7 @@ class ServiceUpdateView(generics.UpdateAPIView):
 class ServiceDeleteView(generics.DestroyAPIView):
 
 	serializer_class = ServiceModelSerializer
+	queryset = Service.objects.all()
 
 
 	def destroy(self, request, *args, **kwargs):
@@ -51,12 +46,12 @@ class ServiceRetriveView(generics.RetrieveAPIView):
 		version = self.request.query_params.get('version')
 
 		if service and version:
-			qs = self.queryset.filter(service_name=service, version=version).annotate(count=Count('service_name'))
+			qs = self.queryset.filter(service=service, version=version).values('service', 'version').annotate(count=Count('service'))
 		elif not version:
-			qs = self.queryset.filter(service_name=service).annotate(count=Count('service_name'))
+			qs = self.queryset.filter(service=service).values('service', 'version').annotate(count=Count('service'))
 
 		if qs:
-			return qs.first()
+			return qs[0]
 
 
 	def get(self, request, *args, **kwargs):
@@ -65,9 +60,9 @@ class ServiceRetriveView(generics.RetrieveAPIView):
 		version = self.request.query_params.get('version')
 
 		if not service and not version:
-			return Response(status.HTTP_400_BAD_REQUEST)
-		elif not service:
-			return Response(status.HTTP_400_BAD_REQUEST)
+			return Response({}, status.HTTP_400_BAD_REQUEST)
+		if not service:
+			return Response({}, status.HTTP_400_BAD_REQUEST)
 
 
 		instance = self.get_object()
@@ -78,7 +73,7 @@ class ServiceRetriveView(generics.RetrieveAPIView):
 			if not version:
 				response_dict.pop('version')
 			return Response(response_dict, status.HTTP_200_OK)
-		return Response({'service':service, 'version':version, 'count':0}, status.HTTP_200_OK)
+		return Response({'service':service, 'version':version, 'count':0}, status.HTTP_404_NOT_FOUND)
 
 
 					
