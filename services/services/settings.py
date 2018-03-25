@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'services.apps.service',
     'services.apps.apiv1',
 
+    #THIRD PARTY APPS
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
