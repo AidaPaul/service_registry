@@ -166,3 +166,9 @@ docs/_build/
 # PyBuilder
 target/
 
+
+# Shashi
+
+local_settings.py
+*.sqlite3
+
