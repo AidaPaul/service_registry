@@ -4,7 +4,7 @@ from views import ServiceCreateView, ServiceUpdateView, ServiceDeleteView, Servi
 
 urlpatterns = [
     url(r'^create/$', ServiceCreateView.as_view()),
-    url(r'^update/$', ServiceUpdateView.as_view()),
+    url(r'^update/(?P<pk>[0-9]+)/$', ServiceUpdateView.as_view()),
     url(r'^delete/$', ServiceDeleteView.as_view()),
-    url(r'^find/$', ServiceRetriveView.as_view()),
+    url(r'^search/$', ServiceRetriveView.as_view()),
 ]
