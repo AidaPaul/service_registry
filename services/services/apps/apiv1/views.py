@@ -44,11 +44,10 @@ class ServiceRetriveView(generics.RetrieveAPIView):
 		
 		service = self.request.query_params.get('service')
 		version = self.request.query_params.get('version')
-
 		if service and version:
 			qs = self.queryset.filter(service=service, version=version).values('service', 'version').annotate(count=Count('service'))
 		elif not version:
-			qs = self.queryset.filter(service=service).values('service', 'version').annotate(count=Count('service'))
+			qs = self.queryset.filter(service=service).values('service').annotate(count=Count('service'))
 
 		if qs:
 			return qs[0]
@@ -69,10 +68,7 @@ class ServiceRetriveView(generics.RetrieveAPIView):
 
 		if instance:
 			serializer = self.serializer_class(instance, context={'request': request}, many=False)
-			response_dict = serializer.data
-			if not version:
-				response_dict.pop('version')
-			return Response(response_dict, status.HTTP_200_OK)
+			return Response(serializer.data, status.HTTP_200_OK)
 		return Response({'service':service, 'version':version, 'count':0}, status.HTTP_404_NOT_FOUND)
 
 

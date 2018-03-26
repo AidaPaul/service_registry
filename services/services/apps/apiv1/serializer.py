@@ -28,6 +28,20 @@ class ServiceRetriveModelSerializer(serializers.ModelSerializer):
 
 	count = serializers.IntegerField(read_only=True)
 
+
+	def __init__(self, *args, **kwargs):
+
+		super(ServiceRetriveModelSerializer, self).__init__(*args, **kwargs)
+
+		# remove 'version' field not exists
+		service = self.context['request'].query_params.get('service', None)
+		version = self.context['request'].query_params.get('version', None)
+
+		# remove version from fields
+		if version is None:
+			self.fields.pop('version')
+
+
 	class Meta:
 		model = Service
 		fields = ('service', 'version', 'count')
