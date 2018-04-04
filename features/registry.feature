@@ -1,9 +1,6 @@
 # Created by Tymoteusz Paul at 18/01/2016
 Feature: ServiceRegistry
 
-  Background:
-    Given there is an empty ServiceRegistry
-
   Scenario Outline: Add service
     When I add a service "<service>" with version "<version>"
     Then I should be notified with a change "<change>"
@@ -18,6 +15,7 @@ Feature: ServiceRegistry
 
 
   Scenario Outline: Find service:
+    
     When I search for a service "<service>" with version "<version>"
     Then I should find count "<count>" instances of service
     And the service "<service>" should have the correct type
