@@ -1,5 +1,5 @@
 # Created by Tymoteusz Paul at 18/01/2016
-Feature: ServiceRegistry
+Feature: ServiceRegistry add service
 Given an empty service registry
   Scenario Outline: Add service
     When I add a service "<service>" with version "<version>"
