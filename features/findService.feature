@@ -24,7 +24,7 @@ Scenario Outline: Find service:
     Examples:
       | service | version | count |
       | test    | 0.0.4   |   0   |
-      | test3    | 0.0.1   |   0   |
+      | test3   | 0.0.1   |   0   |
 
 
   Scenario Outline: Finding service without version:
