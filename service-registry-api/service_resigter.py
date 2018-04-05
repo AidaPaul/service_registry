@@ -2,6 +2,10 @@
 from flask import Flask, jsonify
 from flask import abort
 import array
+from flask import request
+from flask import make_response
+
+
 app = Flask(__name__)
 
 
@@ -86,6 +90,10 @@ def get_service_count(service_name,service_version):
     return jsonify({'service': service_name, 'version' : 'service_version', 'count': count })
 	
 
+#return a nice message if not found
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 	
 if __name__ == '__main__':
