@@ -10,7 +10,7 @@ Basic list of requirements can be foud in `featrues` directory that highlights
 the very high overview of how it is supposed to be working. It is intentionally
 left like that as details of implementation are left to you. Any changes
 and decisions you make should be reflected in feature files with corresponding
-steps implementation for [Behave](http://pythonhosted.org/behave/). In short if
+steps implementation for [Behave](https://behave.readthedocs.io/en/latest/). In short if
 it is not in feature files, it doesn't exist and has no right to exist in code.
 
 ## Your task
