@@ -5,7 +5,6 @@ so that I can interact with the services and know their state and count
 Background:
     Given add_Service_Registry is run
     and the following services exist:
-      | service | version | change  | uniqueID          |
       | test    | 0.0.1   | created | 0.0.1.1.epochtime |
       | test    | 0.0.1   | created | 0.0.1.2.epochtime |
       | test    | 0.0.2   | created | 0.0.2.1.epochtime |
@@ -23,25 +22,18 @@ Scenario: Finding all api end points:
    and the response should be paged
 
 
-Scenario Outline: Finding all services: only service name   
-   When I search for a service "<service>" 
-   Then I should get a list of all the services for "<services>":
-      | test  |
-      | test2 |
-  and the response should be paged 
-  
-  Examples: test one
-      | service | version | change  | uniqueID          |
-      | test    | 0.0.1   | created | 0.0.1.1.epochtime |
+Scenario: Finding all services: only service name   
+   When I search for a service with a non exact match
+   |test|
+   Then I should get a list of all the services
+       test    | 0.0.1   | created | 0.0.1.1.epochtime |
       | test    | 0.0.1   | created | 0.0.1.2.epochtime |
       | test    | 0.0.2   | created | 0.0.2.1.epochtime |
       | test    | 0.0.2   | created | 0.0.2.2.epochtime |
-
-Examples: test two
-      | service | version | change  | uniqueID          |
       | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
       | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
-   
+   and the response should be paged 
+
  Scenario Outline: Finding all services with service and version
    When I search for a service/show_all "<service>" with version "<version>"
     Then I should find count "<count>" instances of service
@@ -73,7 +65,7 @@ Examples: test two
    
   Scenario Outline: Finding service unique id
     When I search for a service "<service>" with version "<version>" with number "<number>"
-    Then I should get the "<uniqueID>" of service
+    Then I should get the uniqueID "<uniqueID>" of the service
     And the service "<service>" should have the correct type
     And the service "<service>" should have the correct version "<version>"
     Examples:
