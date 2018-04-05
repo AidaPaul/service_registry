@@ -56,17 +56,17 @@ services = [
 ]
 
 
-@app.route('/service_registry/api/v1.0/Services', methods=['GET'])
+@app.route('/service_registry/api/v1.0/services', methods=['GET'])
 def get_services():
     return jsonify({'services': services})
-@app.route('/service_registry/api/v1.0/Services/<int:service_id>', methods=['GET'])
+@app.route('/service_registry/api/v1.0/services/<int:service_id>', methods=['GET'])
 def get_service_id(service_id):
     service = [service for service in services if service['id'] == service_id]
     if len(service) == 0:
         abort(404)
     return jsonify({'service': service[0]})
 	
-@app.route('/service_registry/api/v1.0/Services/<service_name_all>/getAll', methods=['GET'])
+@app.route('/service_registry/api/v1.0/services/<service_name_all>/getAll', methods=['GET'])
 def get_service_all(service_name_all):
     service = [service for service in services if service['service'] == service_name_all]
     if len(service) == 0:
@@ -77,14 +77,14 @@ def get_service_all(service_name_all):
 
 
 
-@app.route('/service_registry/api/v1.0/Services/<service_name>', methods=['GET'])
+@app.route('/service_registry/api/v1.0/services/<service_name>', methods=['GET'])
 def get_service(service_name):
     service = [service for service in services if service['service'] == service_name]
     if len(service) == 0:
             return jsonify({'service': service_name,'count': 0 })
     count=len(service)	
     return jsonify({'service': service_name,'count': count })
-@app.route('/service_registry/api/v1.0/Services/<service_name>/<service_version>', methods=['GET'])
+@app.route('/service_registry/api/v1.0/services/<service_name>/<service_version>', methods=['GET'])
 def get_service_count(service_name,service_version):
     service = [service for service in services if service['service'] == service_name and service['version'] == service_version]
     if len(service) == 0:
@@ -99,8 +99,8 @@ def get_service_count(service_name,service_version):
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
-#@app.route('/service_registry/api/v1.0/Services/<service_name>/<service_version>', methods=['POST'])
-@app.route('/service_registry/api/v1.0/Services', methods=['POST'])
+#@app.route('/service_registry/api/v1.0/services/<service_name>/<service_version>', methods=['POST'])
+@app.route('/service_registry/api/v1.0/services', methods=['POST'])
 def create_service():
     if not request.json or not 'service' in request.json or not 'version' in request.json:
         abort(400)
@@ -115,7 +115,7 @@ def create_service():
     
 
 
-@app.route('/service_registry/api/v1.0/Services/<int:service_id>', methods=['PUT'])
+@app.route('/service_registry/api/v1.0/services/<int:service_id>', methods=['PUT'])
 def update_service(service_id):
     service = [service for service in services if service['id'] == service_id]
     if len(service) == 0:
@@ -134,7 +134,7 @@ def update_service(service_id):
 #    service[0]['change_version'] = request.json.get('done', service[0]['done']))
     return jsonify({'service': service[0]})
 
-@app.route('/service_registry/api/v1.0/Services/<int:service_id>', methods=['DELETE'])
+@app.route('/service_registry/api/v1.0/services/<int:service_id>', methods=['DELETE'])
 def delete_service(service_id):
     service = [service for service in services if service['id'] == service_id]
     if len(service) == 0:
