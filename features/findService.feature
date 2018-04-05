@@ -57,9 +57,9 @@ Scenario Outline: Find service:
     Examples:
 
       | service | version | number| uniqueID          | count  |
-      | test    | 0.0.1   | 3     | "No such service  |   0    | 
-      | test    | 0.0.1   | b     | "No such service  |   0    | 
-      | test    | 0.0.2   | 3     | "No such service  |   0    | 
-      | test    | 0.0.2   | 10    | "No such service  |   0    | 
-      | test4   | 0.0.2   | 1     | "No such service  |   0    | 
-      | test    | 0.0.4   | 1     | "No such service  |   0    | 
+      | test    | 0.0.1   | 3     | "No such service" |   0    | 
+      | test    | 0.0.1   | b     | "No such service" |   0    |
+      | test    | 0.0.2   | 3     | "No such service" |   0    |
+      | test    | 0.0.2   | 10    | "No such service" |   0    |
+      | test4   | 0.0.2   | 1     | "No such service" |   0    | 
+      | test    | 0.0.4   | 1     | "No such service" |   0    |
