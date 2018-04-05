@@ -1,4 +1,8 @@
-Scenario Outline: Find service:
+Feature: service discovery
+As a user of service_registry API, I like to be able to find services and get their counts back,
+so that I can interact with the services and know their state and count
+
+Background
     Given add_Service_Registry is run
     and the following services exist:
       | service | version | change  | uniqueID          |
