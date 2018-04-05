@@ -20,14 +20,12 @@
 
   Scenario Outline: updating a service with service name and version:
     When I update a <service> and <version>
-    Then I should be notified with a change "<change>" for all the 
+    Then I should be notified with a change "<change>" and <change_version> should increment to one higer than biggest <change_version> for this service and version combinaiton
+    And update will happen to all services named <service> with version <version> only
     Examples:
-      | change  |
-      | changed |
+      | service | version | change  |  change_version |
+      | test    | 0.0.2   | changed |    3            |
 
-      | service | version | change  | uniqueID          |  change_version |
-      | test    | 0.0.1   | created | 0.0.1.1.epochtime |    2
-      | test    | 0.0.1   | created | 0.0.1.2.epochtime |
       
       
    Scenario Outline: updating a service with service name and version and unique_ID
