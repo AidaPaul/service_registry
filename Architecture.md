@@ -30,6 +30,8 @@ python service_resigter.py
 Please run this command fro the route folder of the repo once you have cloned it.
  from a different terminal run the following commands to interact with the API server:
  
- curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test     
- curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test"}' http://localhost:5000/http://localhost:5000/service_registry/api/v1.0/addService
- curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test2   
+curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test     
+
+curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test"}' http://localhost:5000/service_registry/api/v1.0/addService
+
+curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test2   
