@@ -1,5 +1,8 @@
 # Created by Tymoteusz Paul at 18/01/2016
 Feature: ServiceRegistry add service
+As a service_registry API user(service), I want to be able to add services to the registry, So that new services can register themselvs
+and so that other services can find them.
+
 Given an empty service registry
   Scenario Outline: Add service
     When I add a service "<service>" with version "<version>"
