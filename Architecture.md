@@ -1,6 +1,6 @@
 
 Reference-architecture: 
-![alt text][logo]
+![reference architecture draft][logo]
 
-[logo]: https://1drv.ms/u/s!Ao7xRIakB7jGiGRrHtOfwxW-tlK- "service registry architecture"
+[logo]: http://butlerthing.io/StudioH67/AWS_Architecture_ServiceRegistry.png "service registry architecture"
 
