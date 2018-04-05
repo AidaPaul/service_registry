@@ -115,31 +115,32 @@ def create_service():
     
 
 
-@app.route('/service_registry/api/v1.0/Services/<int:task_id>', methods=['PUT'])
-def update_task(task_id):
-    task = [task for task in tasks if task['id'] == task_id]
-    if len(task) == 0:
+@app.route('/service_registry/api/v1.0/Services/<int:service_id>', methods=['PUT'])
+def update_service(service_id):
+    service = [service for service in services if service['id'] == service_id]
+    if len(service) == 0:
         abort(404)
     if not request.json:
         abort(400)
-    if 'title' in request.json and type(request.json['title']) != unicode:
+    if 'title' in request.json and type(request.json['version']) != unicode:
         abort(400)
-    if 'description' in request.json and type(request.json['description']) is not unicode:
+    if 'description' in request.json and type(request.json['version']) is not unicode:
         abort(400)
-    if 'done' in request.json and type(request.json['done']) is not bool:
+    if 'done' in request.json and type(request.json['change']) is not unicode:
         abort(400)
-    task[0]['title'] = request.json.get('title', task[0]['title'])
-    task[0]['description'] = request.json.get('description', task[0]['description'])
-    task[0]['done'] = request.json.get('done', task[0]['done'])
-    return jsonify({'task': task[0]})
+    service[0]['version'] = request.json.get('service', service[0]['service'])
+    service[0]['version'] = request.json.get('version', service[0]['version'])
+    service[0]['change'] = 'changed'
+#    service[0]['change_version'] = request.json.get('done', service[0]['done']))
+    return jsonify({'service': service[0]})
 
-@app.route('/service_registry/api/v1.0/Services/<int:task_id>', methods=['DELETE'])
-def delete_task(task_id):
-    task = [task for task in tasks if task['id'] == task_id]
-    if len(task) == 0:
+@app.route('/service_registry/api/v1.0/Services/<int:service_id>', methods=['DELETE'])
+def delete_service(service_id):
+    service = [service for service in services if service['id'] == service_id]
+    if len(service) == 0:
         abort(404)
-    tasks.remove(task[0])
-    return jsonify({'result': True})
+    services.remove(service[0])
+    return jsonify({'change': 'removed'})
     services.append(service)
     return jsonify({'service': service}), 201
 
