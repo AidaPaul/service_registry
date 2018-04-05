@@ -8,7 +8,20 @@ Scenario Outline: Find service:
       | test    | 0.0.2   | created | 0.0.2.2.epochtime |
       | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
       | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
+
+Scenario Outline: Finding all api end points:   
+   When call the root directory "/"
+   Then I should get a list of all end points <end_points> and call type <call_type>
+      | end_points                    | call_type    |
+      |service_registry/addService    | POST         |
+      |service_registry/findService   | GET          |
+      |service_registry/updateService | PUT          |
+      |service_registry/deleteService | Delete       |
+
       
+   and the response should be paged
+  
+
 Scenario Outline: Finding all services:   
    When I search for a service "<service>" 
    Then I should get a list of all the services :
