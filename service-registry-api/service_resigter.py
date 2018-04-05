@@ -73,6 +73,10 @@ def get_service_all(service_name_all):
         abort(404)
     return jsonify({'service': service})
 	
+
+
+
+
 @app.route('/service_registry/api/v1.0/findServices/<service_name>', methods=['GET'])
 def get_service(service_name):
     service = [service for service in services if service['service'] == service_name]
@@ -94,6 +98,26 @@ def get_service_count(service_name,service_version):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+#@app.route('/service_registry/api/v1.0/addService/<service_name>/<service_version>', methods=['POST'])
+@app.route('/service_registry/api/v1.0/addService', methods=['POST'])
+def create_service():
+    if not request.json or not 'service' in request.json or not 'version' in request.json:
+        abort(400)
+    service = {
+        'id': services[-1]['id'] + 1,
+        'service': request.json['service'],
+        'version': request.json.get('version', ""),
+        'uniqueID' : u'0.0.2.2.epochtime',
+        'change': u'created'
+    }
+
+    
+
+
+
+    services.append(service)
+    return jsonify({'service': service}), 201
 
 	
 if __name__ == '__main__':
