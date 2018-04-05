@@ -108,7 +108,7 @@ def create_service():
         'id': services[-1]['id'] + 1,
         'service': request.json['service'],
         'version': request.json.get('version', ""),
-        'uniqueID' : u'0.0.2.2.epochtime',
+#        'uniqueID' : u'0.0.2.2.epochtime',
         'change': u'created'
     }
 
