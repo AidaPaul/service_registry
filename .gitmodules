@@ -1,6 +1,3 @@
 [submodule "behave"]
 	path = behave
 	url = https://github.com/ButlerThing/behave.git
-[submodule "apistar"]
-	path = apistar
-	url = https://github.com/ButlerThing/apistar.git
