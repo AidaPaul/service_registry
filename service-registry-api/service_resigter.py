@@ -1,6 +1,7 @@
 #!flask/bin/python
 from flask import Flask, jsonify
 from flask import abort
+import array
 app = Flask(__name__)
 
 
@@ -43,28 +44,13 @@ def get_service(service_name):
 def get_service_count(service_name,service_version):
     service = [service for service in services if service['service'] == service_name and service['version'] == service_version]
     if len(service) == 0:
-        abort(404)
-    return jsonify({'service': service})	
+            return jsonify({'service': service_name, 'version' : 'service_version', 'count': 0 })
+    count=len(service)	
+    #return jsonify({'service': service})	
+    return jsonify({'service': service_name, 'version' : 'service_version', 'count': count })
 	
-	
-	
-	
-@app.route('/todo/api/v1.0/services', methods=['POST'])
 
 
-
-
-def create_service():
-    if not request.json or not 'title' in request.json:
-        abort(400)
-    service = {
-        'id': services[-1]['id'] + 1,
-        'title': request.json['title'],
-        'description': request.json.get('description', ""),
-        'done': False
-    }
-    services.append(service)
-    return jsonify({'service': service}), 201
 	
 if __name__ == '__main__':
     app.run(debug=True)
