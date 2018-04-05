@@ -12,8 +12,8 @@ Background:
       | test2   | 0.0.2   | created | 0.0.2.1.epochtime |      3         |
  
 Scenario Outline: Removing a service:
-    Given I call to remove a service
-    When I remove a service
+    Given I call to remove a <service>
+    When I remove the service
     Then the service should be removed
     And I should be notified with a change "<change>"
     
