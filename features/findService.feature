@@ -14,35 +14,42 @@ Background:
       | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
 
 Scenario Outline: Finding all api end points:   
-   When call the root directory "/"
-   Then I should get a list of all end points <end_points> and call type <call_type>
+   When call the root_directory "/" with no parameters
+   Then I should get a list of all end points <end_points> and the associated call type <call_type>
       | end_points                    | call_type    |
       |service_registry/addService    | POST         |
       |service_registry/findService   | GET          |
       |service_registry/updateService | PUT          |
       |service_registry/deleteService | Delete       |
-
-      
    and the response should be paged
   
 
-Scenario Outline: Finding all services:   
+Scenario Outline: Finding all services: only service name   
    When I search for a service "<service>" 
-   Then I should get a list of all the services :
+   Then I should get a list of all the services for <service>:
+      |service|
+      | test  |
+      | test2 |
+  and the response should be paged 
+  Examples: test 
       | service | version | change  | uniqueID          |
       | test    | 0.0.1   | created | 0.0.1.1.epochtime |
       | test    | 0.0.1   | created | 0.0.1.2.epochtime |
       | test    | 0.0.2   | created | 0.0.2.1.epochtime |
       | test    | 0.0.2   | created | 0.0.2.2.epochtime |
+
+ Examples: test2
+      | service | version | change  | uniqueID          |
       | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
       | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
-   and the response should be paged
+
    
-   
-   When I search for a service "<service>" with version "<version>"
+ Scenario Outline: Finding all services with service and version
+   When I search for a service/show_all "<service>" with version "<version>"
     Then I should find count "<count>" instances of service
     And the service "<service>" should have the correct type
     And the service "<service>" should have the correct version "<version>"
+    And I should find count "<count>" services
     Examples:
       | service | version | count |
       | test    | 0.0.1   |   2   |
@@ -68,9 +75,8 @@ Scenario Outline: Finding all services:
       | test2   |   2   |
    
   Scenario Outline: Finding service unique id
-
     When I search for a service "<service>" with version "<version>" with number "<number>"
-    Then I should find count "<uniqueID>" instances of service
+    Then I should get the "<uniqueID>" of service
     And the service "<service>" should have the correct type
     And the service "<service>" should have the correct version "<version>"
     Examples:
