@@ -23,10 +23,10 @@ Scenario: Finding all api end points:
 
 
 Scenario: Finding all services: only service name   
-   When I search for a service with a non exact match
-   |test|
+   When I search for a test service
+      |test|
    Then I should get a list of all the services
-       test    | 0.0.1   | created | 0.0.1.1.epochtime |
+      | test    | 0.0.1   | created | 0.0.1.1.epochtime |
       | test    | 0.0.1   | created | 0.0.1.2.epochtime |
       | test    | 0.0.2   | created | 0.0.2.1.epochtime |
       | test    | 0.0.2   | created | 0.0.2.2.epochtime |
