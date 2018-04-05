@@ -1,5 +1,5 @@
 Feature: delete a service
-As an API user, I want to be able to delete services, so that redudandant services are removed and we don't get clutter.
+As an API user, I want to be able to delete services, so that redundant services are removed and we don't get clutter.
 
 Background:
    Given add_Service_Registry is run
