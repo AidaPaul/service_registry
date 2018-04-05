@@ -16,12 +16,41 @@ services = [
     },
     {
         'id': 2,
+		'uniqueID' : u'0.0.1.2.epochtime',
+        'service': u'test',
+	    'version': u'0.0.1', 
+        'change': u'created'
+    },
+	{
+        'id': 3,
 		'uniqueID' : u'0.0.2.1.epochtime',
         'service': u'test',
+        'version': u'0.0.2', 
+        'change': u'created'
+    },
+    {
+        'id': 4,
+		'uniqueID' : u'0.0.2.2.epochtime',
+        'service': u'test',
+	    'version': u'0.0.2', 
+        'change': u'created'
+    },
+    {
+        'id': 5,
+		'uniqueID' : u'0.0.2.1.epochtime',
+        'service': u'test2',
+	    'version': u'0.0.2', 
+        'change': u'created'
+    },
+	    {
+        'id': 6,
+		'uniqueID' : u'0.0.2.2.epochtime',
+        'service': u'test2',
 	    'version': u'0.0.2', 
         'change': u'created'
     }
 ]
+
 
 @app.route('/service_registry/api/v1.0/findServices', methods=['GET'])
 def get_services():
