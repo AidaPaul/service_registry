@@ -8,7 +8,21 @@ Scenario Outline: Find service:
       | test    | 0.0.2   | created | 0.0.2.2.epochtime |
       | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
       | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
-    When I search for a service "<service>" with version "<version>"
+      
+Scenario Outline: Finding all services:   
+   When I search for a service "<service>" 
+   Then I should get a list of all the services :
+      | service | version | change  | uniqueID          |
+      | test    | 0.0.1   | created | 0.0.1.1.epochtime |
+      | test    | 0.0.1   | created | 0.0.1.2.epochtime |
+      | test    | 0.0.2   | created | 0.0.2.1.epochtime |
+      | test    | 0.0.2   | created | 0.0.2.2.epochtime |
+      | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
+      | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
+   and the response should be paged
+   
+   
+   When I search for a service "<service>" with version "<version>"
     Then I should find count "<count>" instances of service
     And the service "<service>" should have the correct type
     And the service "<service>" should have the correct version "<version>"
