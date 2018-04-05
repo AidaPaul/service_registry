@@ -1,3 +1,9 @@
+Feature: update service status
+
+As a user of service_registry API iwant to be able to update information about services,
+so that desired changes are enabled on them and I have an up to date understanding of services
+  
+  
   Scenario Outline: updating a service with service name only:
     Given add_Service_Registry is run
     and the following services exist:
