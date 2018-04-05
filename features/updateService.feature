@@ -3,9 +3,8 @@ Feature: update service status
 As a user of service_registry API iwant to be able to update information about services,
 so that desired changes are enabled on them and I have an up to date understanding of services
   
-  
-  Scenario Outline: updating a service with service name only:
-    Given add_Service_Registry is run
+  Background:
+      Given add_Service_Registry is run
     and the following services exist:
       | service | version | change  | ID                | change_version |
       | test    | 0.0.1   | created | 1                 |      1         |
@@ -14,6 +13,8 @@ so that desired changes are enabled on them and I have an up to date understandi
       | test    | 0.0.2   | created | 4                 |      1         |
       | test2   | 0.0.2   | created | 5                 |      1         |
       | test2   | 0.0.2   | created | 6                 |      1         |
+  
+  Scenario Outline: updating a service with service name only:
     When I update a <service>
     Then I should be notified with a change "<change>" and <change_version> should increment
     And update will happen to all services named <service>
