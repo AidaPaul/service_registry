@@ -6,15 +6,15 @@ and so that other services can find them.
     Scenario Outline: Add service
     Given an empty service registry
     When I add a service "<service>" with version "<version>"
-    Then I should be notified with a change "<change>" and a unique service identifier "<uniqueID>"
+    Then I should be notified with a change "<change>" and a unique service identifier "<id>"
     Examples:
-      | service | version | change  | uniqueID          |
-      | test    | 0.0.1   | created | 0.0.1.1.epochtime |
-      | test    | 0.0.1   | created | 0.0.1.2.epochtime |
-      | test    | 0.0.2   | created | 0.0.2.1.epochtime |
-      | test    | 0.0.2   | created | 0.0.2.2.epochtime |
-      | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
-      | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
+      | service | version | change  | id|
+      | test    | 0.0.1   | created | 1 |
+      | test    | 0.0.1   | created | 2 |
+      | test    | 0.0.2   | created | 3 |
+      | test    | 0.0.2   | created | 4 |
+      | test2   | 0.0.2   | created | 5 |
+      | test2   | 0.0.2   | created | 6 |
 
 
  
