@@ -6,7 +6,7 @@ so that desired changes are enabled on them and I have an up to date understandi
   Background:
       Given add_Service_Registry is run
     and the following services exist:
-      | service | version | change  | ID                | change_version |
+      | service | version | change  | id                | change_version |
       | test    | 0.0.1   | created | 1                 |      1         |
       | test    | 0.0.1   | created | 2                 |      1         |
       | test    | 0.0.2   | created | 3                 |      1         |
@@ -37,9 +37,9 @@ so that desired changes are enabled on them and I have an up to date understandi
       
    Scenario Outline: updating a service ID
    
-    When I update a service <service> with <ID>
+    When I update a service <service> with <id>
     Then I should be notified with a change "<change>" and <change_version> should increment to one higer than biggest <change_version> for this service and version combinaiton
     And update will happen one service only only
     Examples:
-      | service | ID      | change  |  change_version |
+      | service | id      | change  |  change_version |
       | test    | 2       | changed |   3             |
