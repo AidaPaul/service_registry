@@ -19,12 +19,12 @@ Scenario: Finding all services: only service name
       |test_service|
       |test|
    Then I should get a list of all the services
-      | test    | 0.0.1   | created | 0.0.1.1.epochtime |
-      | test    | 0.0.1   | created | 0.0.1.2.epochtime |
-      | test    | 0.0.2   | created | 0.0.2.1.epochtime |
-      | test    | 0.0.2   | created | 0.0.2.2.epochtime |
-      | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
-      | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
+      | test    | 0.0.1   | created | id  |
+      | test    | 0.0.1   | created |  1  |
+      | test    | 0.0.2   | created |  2  |
+      | test    | 0.0.2   | created |  3  |
+      | test2   | 0.0.2   | created |  4  |
+      | test2   | 0.0.2   | created |  5  |
    and the response should be paged 
 
  Scenario Outline: Finding all services with service and version
@@ -62,20 +62,20 @@ Scenario: Finding all services: only service name
     And the service "<service>" should have the correct type
     And the service "<service>" should have the correct version "<version>"
     Examples:
-      | service | version | number| uniqueID |
-      | test    | 0.0.1   | 1     | 0.0.1.1.epochtime |
-      | test    | 0.0.1   | 2     | 0.0.1.2.epochtime |
-      | test    | 0.0.2   | 1     | 0.0.2.1.epochtime |
-      | test    | 0.0.2   | 2     | 0.0.2.2.epochtime |
-      | test2   | 0.0.2   | 1     | 0.0.2.1.epochtime |
-      | test2   | 0.0.2   | 2     | 0.0.2.2.epochtime |
+      | service | version | number| id|
+      | test    | 0.0.1   | 1     | 1 |
+      | test    | 0.0.1   | 2     | 2 |
+      | test    | 0.0.2   | 1     | 3 |
+      | test    | 0.0.2   | 2     | 4 |
+      | test2   | 0.0.2   | 1     | 5 |
+      | test2   | 0.0.2   | 2     | 6 |
 
   Scenario Outline: Finding service with non existing number:
     When I search for a service "<service>" with version "<version>" with number "<number>"
     Then I should find count "<count>" services
     Examples:
 
-      | service | version | number| uniqueID          | count  |
+      | service | version | number| id                | count  |
       | test    | 0.0.1   | 3     | "No such service" |   0    | 
       | test    | 0.0.1   | b     | "No such service" |   0    |
       | test    | 0.0.2   | 3     | "No such service" |   0    |
