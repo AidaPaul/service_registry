@@ -8,6 +8,9 @@ Thank you for the challenge, I did very much enjoy it.
 We looked at the architecture and possible implementations.
 We need to implement a BDD rest-assured like test framework.
 There are vaious bugs in my post code that needs resovling
+There is further work on update functionality that is required
+User authentication should ideally be implemented
+Pagination for the calls should be implemented.
 Lets discuss how we can use S3 as a consistent data base
 We need to add data base storgage and persistence to our code
 We think that there should be another test service that goes with service_register to test it.
