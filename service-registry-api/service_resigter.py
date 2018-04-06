@@ -4,6 +4,7 @@ from flask import abort
 import array
 from flask import request
 from flask import make_response
+from flask import url_for
 
 
 app = Flask(__name__)
@@ -55,10 +56,11 @@ services = [
     }
 ]
 
-
 @app.route('/service_registry/api/v1.0/services', methods=['GET'])
 def get_services():
-    return jsonify({'services': services})
+#    return jsonify({'services': services})
+     return jsonify({'services': [make_public_service(service) for service in services]})
+
 @app.route('/service_registry/api/v1.0/services/<int:service_id>', methods=['GET'])
 def get_service_id(service_id):
     service = [service for service in services if service['id'] == service_id]
@@ -144,6 +146,14 @@ def delete_service(service_id):
     services.append(service)
     return jsonify({'service': service}), 201
 
-	
+def make_public_service(service):
+    new_service = {}
+    for field in service:
+        if field == 'id':
+            new_service['uri'] = url_for('get_services', service_id=service['id'], _external=True)
+        else:
+            new_service[field] = service[field]
+    return new_service
+
 if __name__ == '__main__':
     app.run(debug=True)
