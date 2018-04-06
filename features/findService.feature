@@ -5,23 +5,13 @@ so that I can interact with the services and know their state and count
 Background:
     Given add_Service_Registry is run
     and the following services exist:
-      | service | version | change  | uniqueID          |
-      | test    | 0.0.1   | created | 0.0.1.1.epochtime |
-      | test    | 0.0.1   | created | 0.0.1.2.epochtime |
-      | test    | 0.0.2   | created | 0.0.2.1.epochtime |
-      | test    | 0.0.2   | created | 0.0.2.2.epochtime |
-      | test2   | 0.0.2   | created | 0.0.2.1.epochtime |
-      | test2   | 0.0.2   | created | 0.0.2.2.epochtime |
-
-Scenario: Finding all api end points:   
-   When call the root_directory "/" with no parameters
-   Then I should get a list of all end points "<end_points>" and the associated call type "<call_type>"
-      |end_points                     | call_type    |
-      |service_registry/addService    | POST         |
-      |service_registry/findService   | GET          |
-      |service_registry/updateService | PUT          |
-      |service_registry/deleteService | Delete       |
-   and the response should be paged
+      | service | version | change  | id  |
+      | test    | 0.0.1   | created | 1   |
+      | test    | 0.0.1   | created | 2   |
+      | test    | 0.0.2   | created | 3   |
+      | test    | 0.0.2   | created | 4   |
+      | test2   | 0.0.2   | created | 5   |
+      | test2   | 0.0.2   | created | 6   |
 
 
 Scenario: Finding all services: only service name   
