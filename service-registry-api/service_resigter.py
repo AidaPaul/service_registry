@@ -61,8 +61,9 @@ services = [
 #We also return a URI refering to each service so that the users don't have to create that
 @app.route('/service_registry/api/v1.0/services', methods=['GET'])
 def get_services():
-#    return jsonify({'services': services})
-     return jsonify({'services': [make_public_service(service) for service in services]})
+    return jsonify({'services': services})
+#put the code below in once you get URIs working
+#     return jsonify({'services': [make_public_service(service) for service in services]})
 
 #This get function returns a service by service id
 @app.route('/service_registry/api/v1.0/services/<int:service_id>', methods=['GET'])
@@ -151,14 +152,15 @@ def delete_service(service_id):
     services.append(service)
     return jsonify({'service': service}), 201
 #This function is used to create a URI to our services. This helps the user interact with the service
-def make_public_service(service):
-    new_service = {}
-    for field in service:
-        if field == 'id':
-            new_service['uri'] = url_for('get_services', service_id=service['id'], _external=True)
-        else:
-            new_service[field] = service[field]
-    return new_service
+#We have removed it for now and can be added in the future to help users make calls to services
+#def make_public_service(service):
+#    new_service = {}
+#    for field in service:
+#        if field == 'id':
+#            new_service['uri'] = url_for('get_services', service_id=service['id'], _external=True)
+#        else:
+#            new_service[field] = service[field]
+ #   return new_service
 
 if __name__ == '__main__':
     app.run(debug=True)
