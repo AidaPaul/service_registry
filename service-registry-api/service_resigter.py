@@ -167,12 +167,18 @@ def update_service_serviceName(service_name):
         abort(400)
     if 'change' in request.json and type(request.json['change']) != str:
         abort(400)
-    return jsonify({'Endpoint': 'Not implmented'})
+
+    for i in range(0,len(service)):
+        service[i]['service'] = request.json.get('service', service[i]['service'])
+        service[i]['version'] = request.json.get('version', service[i]['version'])
+        service[i]['change'] = u'changed'
+        service[i]['change_version']=service[i]['change_version']+1
+
 #    service[0]['service'] = request.json.get('service', service[0]['service'])
 #    service[0]['version'] = request.json.get('version', service[0]['version'])
 #    service[0]['change'] = u'changed'
 #    service[0]['change_version']=service[0]['change_version']+1
-    return jsonify({'service': service[0]})
+    return jsonify({'service': service})
 
 
 
