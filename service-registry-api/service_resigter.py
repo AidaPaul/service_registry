@@ -106,7 +106,8 @@ def get_service_count(service_name,service_version):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
-#This is the post end point implementation
+
+	#This is the post end point implementation
 @app.route('/service_registry/api/v1.0/services', methods=['POST'])
 def create_service():
     if not request.json or not 'service' in request.json or not 'version' in request.json:
@@ -118,6 +119,8 @@ def create_service():
 #        'uniqueID' : u'0.0.2.2.epochtime',
         'change': u'created'
     }
+    services.append(service)
+    return jsonify({'service': service}), 201
 
     
 
