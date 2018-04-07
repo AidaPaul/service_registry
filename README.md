@@ -1,6 +1,6 @@
 # Let's write: service registry
-
-please look at [Architecture.md for road map notes, etc](Architecture.md)
+# Sure, please look at our entry here: 
+[Architecture.md for road map notes, etc](Architecture.md)
 ## Overview
 This service is responsible of keeping track of services within the system.
 It is a restful way for services to find other services, ensure that they are
