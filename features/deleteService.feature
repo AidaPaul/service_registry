@@ -6,8 +6,8 @@ Scenario Outline: Removing a service:
     And I call to remove a service with <id>
     When I remove the service
     Then the service should be removed
-    And I should be notified with a change "<change>"
+    And I should be notified with a change "<change>", service <service>, version <version>
     
     Examples:
-      | service | id  | change |
-      | test    |  1  | removed|
+      | service | id  | change | version |
+      | test    |  1  | removed| 0.0.1   |
