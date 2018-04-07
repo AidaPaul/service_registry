@@ -1,5 +1,13 @@
 
-Reference-architecture: 
+
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Install behave](#install-behave)
+
+
+## Architecture
+Reference-architecture
 ![reference architecture draft][logo]
 
 [logo]: http://butlerthing.io/StudioH67/AWS_Architecture_ServiceRegistry.png "service registry architecture"
@@ -15,6 +23,7 @@ Thank you for the challenge, I did very much enjoy it.
 + We need to add data base storgage and persistence to our code.
 + We think that there should be another test service that goes with service_register to test it.
 
+## Installation
 To install please clone the repo.
 `git clone https://github.com/ButlerThing/service_registry.git`
 
@@ -33,6 +42,7 @@ python service_resigter.py
 
 Please run this command from the root folder of the repo once you have cloned it.
 
+## Usage
 from a different terminal run the following commands to interact with the API server:
 ```
 curl -i http://localhost:5000/service_registry/api/v1.0/service 
@@ -43,6 +53,7 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test","versi
 
 curl -i http://localhost:5000/service_registry/api/v1.0/services/test2   
 ```
+### Install behave
 to install behave (currently behave only runs on a Mac:
 
 ```python
