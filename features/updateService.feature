@@ -37,9 +37,10 @@ so that desired changes are enabled on them and I have an up to date understandi
       
    Scenario Outline: updating a service ID
    
-    When I update a service <service> with <id>
+    When I update a service with <id>
     Then I should be notified with a change "<change>" and <change_version> should increment to one higer than biggest <change_version> for this service and version combinaiton
     And update will happen one service only only
+    And I should be notified with <service>
     Examples:
       | service | id      | change  |  change_version |
       | test    | 2       | changed |   3             |
