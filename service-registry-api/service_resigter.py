@@ -135,7 +135,7 @@ def update_service(service_id):
         abort(400)
     if 'done' in request.json and type(request.json['change']) is not unicode:
         abort(400)
-    service[0]['version'] = request.json.get('service', service[0]['service'])
+    service[0]['service'] = request.json.get('service', service[0]['service'])
     service[0]['version'] = request.json.get('version', service[0]['version'])
     service[0]['change'] = 'changed'
     return jsonify({'service': service[0]})
