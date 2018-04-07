@@ -15,26 +15,36 @@ Lets discuss how we can use S3 as a consistent data base
 We need to add data base storgage and persistence to our code
 We think that there should be another test service that goes with service_register to test it.
 
-To install please cloen or repo.
+To install please clone the repo.
+'git clont https://github.com/ButlerThing/service_registry.git'
+
+Let's begin by installing Flask in a virtual environment. If you don't have virtualenv installed in your system, you can download it from https://pypi.python.org/pypi/virtualenv.
+
+'''python
+cd server_registry
+pip install virtualenv
+flask/bin/pip install flask
+'''
+and to run the server:
+
+'''python
+python service_resigter.py
+'''
+
+Please run this command from the root folder of the repo once you have cloned it.
+
+from a different terminal run the following commands to interact with the API server:
+curl -i http://localhost:5000/service_registry/api/v1.0/service 
+curl -i http://localhost:5000/service_registry/api/v1.0/services/test     
+
+curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test","version":"1.0.3"}' http://localhost:5000/service_registry/api/v1.0/services
+
+curl -i http://localhost:5000/service_registry/api/v1.0/services/test2   
+
+to install behave:
 
 py -m pip --version
 
 py -m pip install --upgrade pip
 
 run pip install -r requirements.txt
-
-pip install virtualenv
-
-flask/bin/pip install flask
-
-and to run the server:
-python service_resigter.py
-
-Please run this command fro the route folder of the repo once you have cloned it.
- from a different terminal run the following commands to interact with the API server:
- 
-curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test     
-
-curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test"}' http://localhost:5000/service_registry/api/v1.0/addService
-
-curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test2   
