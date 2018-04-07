@@ -183,7 +183,7 @@ def delete_service(service_id):
     if len(service) == 0:
         abort(404)
     services.remove(service[0])
-    return jsonify({'change': 'removed'})
+    return jsonify({'sesrvice': service[0]['service'],'id': service[0]['id'],'change': 'removed'})
     services.append(service)
     return jsonify({'service': service}), 201
 #This function is used to create a URI to our services. This helps the user interact with the service
