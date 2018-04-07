@@ -96,7 +96,7 @@ def get_service(service_name):
 def get_service_count(service_name,service_version):
     service = [service for service in services if service['service'] == service_name and service['version'] == service_version]
     if len(service) == 0:
-            return jsonify({'service': service_name, 'version' : 'service_version', 'count': 0 })
+            return jsonify({'service': service_name, 'version' : service_version ,'Not found':'True', 'count': 0 })
     count=len(service)	
     #return jsonify({'service': service})	
     return jsonify({'service': service_name, 'version' : service_version, 'count': count })
