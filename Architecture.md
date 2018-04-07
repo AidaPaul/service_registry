@@ -43,11 +43,9 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test","versi
 
 curl -i http://localhost:5000/service_registry/api/v1.0/services/test2   
 ```
-to install behave:
+to install behave (currently behave only runs on a Mac:
+
 ```python
-py -m pip --version
-
-py -m pip install --upgrade pip
-
-run pip install -r requirements.txt
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
 ```
