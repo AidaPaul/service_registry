@@ -129,11 +129,11 @@ def update_service(service_id):
         abort(404)
     if not request.json:
         abort(400)
-    if 'title' in request.json and type(request.json['version']) != unicode:
+    if 'service' in request.json and type(request.json['service']) != unicode:
         abort(400)
-    if 'description' in request.json and type(request.json['version']) is not unicode:
+    if 'version' in request.json and type(request.json['version']) is not unicode:
         abort(400)
-    if 'done' in request.json and type(request.json['change']) is not unicode:
+    if 'change' in request.json and type(request.json['change']) is not unicode:
         abort(400)
     service[0]['service'] = request.json.get('service', service[0]['service'])
     service[0]['version'] = request.json.get('version', service[0]['version'])
