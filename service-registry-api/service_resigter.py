@@ -153,7 +153,6 @@ def update_service(service_id):
     return jsonify({'service': service[0]})
 
 #This is the put implementation for /services/service_name
-#We have not implemented this yet
 @app.route('/service_registry/api/v1.0/services/<service_name>', methods=['PUT'])
 def update_service_serviceName(service_name):
     service = [service for service in services if service['service'] == service_name]
@@ -174,13 +173,30 @@ def update_service_serviceName(service_name):
         service[i]['change'] = u'changed'
         service[i]['change_version']=service[i]['change_version']+1
 
-#    service[0]['service'] = request.json.get('service', service[0]['service'])
-#    service[0]['version'] = request.json.get('version', service[0]['version'])
-#    service[0]['change'] = u'changed'
-#    service[0]['change_version']=service[0]['change_version']+1
     return jsonify({'service': service})
 
+#This is the put implementation for /services/service_name/version_name
+@app.route('/service_registry/api/v1.0/services/<service_name>/<service_version>', methods=['PUT'])
+def update_service_serviceName_versionName(service_name,service_version):
+    service = [service for service in services if service['service'] == service_name and service['version'] == service_version]
+    if len(service) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    if 'service' in request.json and type(request.json['service']) != str:
+        abort(400)
+    if 'version' in request.json and type(request.json['version']) != str:
+        abort(400)
+    if 'change' in request.json and type(request.json['change']) != str:
+        abort(400)
 
+    for i in range(0,len(service)):
+        service[i]['service'] = request.json.get('service', service[i]['service'])
+        service[i]['version'] = request.json.get('version', service[i]['version'])
+        service[i]['change'] = u'changed'
+        service[i]['change_version']=service[i]['change_version']+1
+
+    return jsonify({'service': service})
 
 #This is the delete end point
 @app.route('/service_registry/api/v1.0/services/<int:service_id>', methods=['DELETE'])
