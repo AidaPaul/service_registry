@@ -16,6 +16,7 @@ services = [
     {
         'id': 1,
 #		'uniqueID' : u'0.0.1.1.epochtime',
+        'change_version':1, 
         'service': u'test',
         'version': u'0.0.1', 
         'change': u'created'
@@ -23,6 +24,7 @@ services = [
     {
         'id': 2,
 #		'uniqueID' : u'0.0.1.2.epochtime',
+        'change_version':1,
         'service': u'test',
 	    'version': u'0.0.1', 
         'change': u'created'
@@ -30,6 +32,7 @@ services = [
 	{
         'id': 3,
 #		'uniqueID' : u'0.0.2.1.epochtime',
+        'change_version':1,
         'service': u'test',
         'version': u'0.0.2', 
         'change': u'created'
@@ -37,6 +40,7 @@ services = [
     {
         'id': 4,
 #		'uniqueID' : u'0.0.2.2.epochtime',
+        'change_version':1,
         'service': u'test',
 	    'version': u'0.0.2', 
         'change': u'created'
@@ -44,6 +48,7 @@ services = [
     {
         'id': 5,
 #		'uniqueID' : u'0.0.2.1.epochtime',
+        'change_version':1,
         'service': u'test2',
 	    'version': u'0.0.2', 
         'change': u'created'
@@ -51,6 +56,7 @@ services = [
 	    {
         'id': 6,
 #		'uniqueID' : u'0.0.2.2.epochtime',
+        'change_version':1,
         'service': u'test2',
 	    'version': u'0.0.2', 
         'change': u'created'
@@ -114,6 +120,7 @@ def create_service():
         abort(400)
     service = {
         'id': services[-1]['id'] + 1,
+        'change_version':1,
         'service': request.json['service'],
         'version': request.json.get('version', ""),
 #        'uniqueID' : u'0.0.2.2.epochtime',
@@ -142,6 +149,7 @@ def update_service(service_id):
     service[0]['service'] = request.json.get('service', service[0]['service'])
     service[0]['version'] = request.json.get('version', service[0]['version'])
     service[0]['change'] = u'changed'
+    service[0]['change_version']=service[0]['change_version']+1
     return jsonify({'service': service[0]})
 
 #This is the delete end point
