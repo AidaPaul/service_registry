@@ -1,40 +1,62 @@
 
-Reference-architecture: 
+
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Install behave](#install-behave)
+
+
+## Architecture
+Reference-architecture
 ![reference architecture draft][logo]
 
 [logo]: http://butlerthing.io/StudioH67/AWS_Architecture_ServiceRegistry.png "service registry architecture"
 
 Thank you for the challenge, I did very much enjoy it.
-We looked at the architecture and possible implementations.
-We need to implement a BDD rest-assured like test framework.
-There are vaious bugs in my post code that needs resovling
-There is further work on update functionality that is required
-User authentication should ideally be implemented
-Pagination for the calls should be implemented.
-Lets discuss how we can use S3 as a consistent data base
-We need to add data base storgage and persistence to our code
-We think that there should be another test service that goes with service_register to test it.
 
-To install please cloen or repo.
++ We looked at the architecture and possible implementations.
++ We need to implement a BDD rest-assured like test framework.
++ There is further work on update functionality that is required.
++ User authentication should ideally be implemented.
++ Pagination for the calls should be implemented.
++ Lets discuss how we can use S3 as a consistent data base.
++ We need to add data base storgage and persistence to our code.
++ We think that there should be another test service that goes with service_register to test it.
 
-py -m pip --version
+## Installation
+To install please clone the repo.
+`git clone https://github.com/ButlerThing/service_registry.git`
 
-py -m pip install --upgrade pip
+Let's begin by installing Flask in a virtual environment. If you don't have virtualenv installed in your system, you can download it from https://pypi.python.org/pypi/virtualenv.
 
-run pip install -r requirements.txt
-
+```python
+cd server_registry
 pip install virtualenv
-
 flask/bin/pip install flask
-
+```
 and to run the server:
+
+```python
 python service_resigter.py
+```
 
-Please run this command fro the route folder of the repo once you have cloned it.
- from a different terminal run the following commands to interact with the API server:
- 
-curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test     
+Please run this command from the root folder of the repo once you have cloned it.
 
-curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test"}' http://localhost:5000/service_registry/api/v1.0/addService
+## Usage
+from a different terminal run the following commands to interact with the API server:
+```
+curl -i http://localhost:5000/service_registry/api/v1.0/service 
 
-curl -i http://localhost:5000/service_registry/api/v1.0/findServices/test2   
+curl -i http://localhost:5000/service_registry/api/v1.0/services/test     
+
+curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test","version":"1.0.3"}' http://localhost:5000/service_registry/api/v1.0/services
+
+curl -i http://localhost:5000/service_registry/api/v1.0/services/test2   
+```
+### Install behave
+to install behave (currently behave only runs on a Mac:
+
+```python
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
+```
