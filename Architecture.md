@@ -32,7 +32,7 @@ Let's begin by installing Flask in a virtual environment. If you don't have virt
 ```python
 cd server_registry
 pip install virtualenv
-flask/bin/pip install flask
+pip install flask
 ```
 and to run the server:
 
