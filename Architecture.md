@@ -46,7 +46,7 @@ Please run this command from the root folder of the repo once you have cloned it
 ## Usage
 from a different terminal run the following commands to interact with the API server:
 ```
-curl -i http://localhost:5000/service_registry/api/v1.0/service 
+curl -i http://localhost:5000/service_registry/api/v1.0/services 
 
 curl -i http://localhost:5000/service_registry/api/v1.0/services/test     
 
@@ -55,9 +55,8 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"service":"test","versi
 curl -i http://localhost:5000/service_registry/api/v1.0/services/test2   
 ```
 ### Install behave
-to install behave (currently behave only runs on a Mac:
+pip3 install behave
 
 ```python
-pip3 install --upgrade pip
 pip3 install -r requirements.txt
 ```
