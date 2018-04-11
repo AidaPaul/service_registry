@@ -24,7 +24,7 @@ Thank you for the challenge, I did very much enjoy it.
 + We think that there should be another test service that goes with service_register to test it.
 
 ## Installation
-To install please clone the repo.
+To install please clone the repo. Normally we recommend that you fork this repo and then clone it. However, if you havent forked it you can clone it using the following command.
 `git clone https://github.com/ButlerThing/service_registry.git`
 
 Let's begin by installing Flask in a virtual environment. If you don't have virtualenv installed in your system, you can download it from https://pypi.python.org/pypi/virtualenv.
@@ -37,6 +37,7 @@ pip install flask
 and to run the server:
 
 ```python
+cd service-registery-api/
 python service_resigter.py
 ```
 
