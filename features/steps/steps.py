@@ -41,12 +41,6 @@ def step_impl_4(context, count):
     assert len(context.page['items']) == int(count)
 
 
-@then(u'the service "{service}" should have the correct type')
-def step_impl_5(context, service):
-    # non specified
-    pass
-
-
 @then(u'the service "{service}" should have the correct version "{version}"')
 def step_impl_6(context, service, version):
     for item in context.page['items']:
