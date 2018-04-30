@@ -20,7 +20,6 @@ Feature: ServiceRegistry
   Scenario Outline: Find service:
     When I search for a service "<service>" with version "<version>"
     Then I should find count "<count>" instances of service
-    And the service "<service>" should have the correct type
     And the service "<service>" should have the correct version "<version>"
     Examples:
       | service | version | count |
@@ -40,7 +39,6 @@ Feature: ServiceRegistry
   Scenario Outline: Finding service without version:
     When I search for a service "<service>" without version
     Then I should find count "<count>" services
-    And the service "<service>" should have the correct type
     Examples:
       | service | count |
       | test    |   4   |
