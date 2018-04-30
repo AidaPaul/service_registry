@@ -1,0 +1,4 @@
+behave==1.2.6
+Flask==1.0.1
+Flask-RESTful==0.3.6
+pony==0.7.3
