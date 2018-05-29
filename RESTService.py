@@ -44,3 +44,9 @@ class RESTService(Resource):
         self.parser.add_argument('version', type=self.InputValidator.not_empty_str, help='Please provide valid service version')
         args = self.parser.parse_args()
         return self.reply(self.registry.add_service(**args))
+
+    def put(self):
+        self.parser.add_argument('service_id', type=self.InputValidator.positive_int, help='Please provide valid service name', required=True)
+        self.parser.add_argument('version', type=self.InputValidator.not_empty_str, help='Please provide valid service version', required=True)
+        args = self.parser.parse_args()
+        return self.reply(self.registry.update_service_version(**args))
