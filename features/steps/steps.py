@@ -1,6 +1,8 @@
 from behave import *
 from requests import get, put, delete, post
 
+URL = "http://127.0.0.1:5002/api/services"
+
 @given(u'there is an empty ServiceRegistry')
 def step_impl(context):
     pass
