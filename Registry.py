@@ -23,3 +23,21 @@ class Registry(object):
         rows = self.conn.execute("UPDATE services SET version = ? WHERE id = ?", [version, service_id]).rowcount
         return "changed" if rows == 1 else "error"
 
+    def find_service(self, service=None, version=None):
+        cols = ('id', 'service', 'version')
+        sql = "SELECT {0} FROM services".format(", ".join(cols))
+
+        if service and version:
+            rows = self.conn.execute(sql + " WHERE service = ? AND version = ?", [service, version]).fetchall()
+        elif service:
+            rows = self.conn.execute(sql + " WHERE service = ?", [service]).fetchall()
+        elif version:
+            rows = self.conn.execute(sql + " WHERE version = ?", [version]).fetchall()
+        else:
+            rows = self.conn.execute(sql).fetchall()
+
+        rows_with_names = []
+        for row in rows:
+            rows_with_names.append(dict(zip(cols, row)))
+
+        return rows_with_names
