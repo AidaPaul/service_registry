@@ -50,3 +50,8 @@ class RESTService(Resource):
         self.parser.add_argument('version', type=self.InputValidator.not_empty_str, help='Please provide valid service version', required=True)
         args = self.parser.parse_args()
         return self.reply(self.registry.update_service_version(**args))
+
+    def delete(self):
+        self.parser.add_argument('service_id', type=self.InputValidator.positive_int, help='Please provide valid service name', required=True)
+        args = self.parser.parse_args()
+        return self.reply(self.registry.remove_service(**args))
