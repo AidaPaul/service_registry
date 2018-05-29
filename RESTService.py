@@ -14,3 +14,7 @@ class RESTService(Resource):
         api = Api(app)
         api.add_resource(RESTService, '/api/services')
         app.run(port='5002')
+
+    @staticmethod
+    def reply(result):
+        return {"result": result}
