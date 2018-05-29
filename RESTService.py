@@ -1,6 +1,7 @@
 from Registry import *
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
+import logging
 
 
 class RESTService(Resource):
@@ -10,6 +11,8 @@ class RESTService(Resource):
 
     @staticmethod
     def start():
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
         app = Flask(__name__)
         api = Api(app)
         api.add_resource(RESTService, '/api/services')
