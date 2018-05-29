@@ -55,3 +55,7 @@ class RESTService(Resource):
         self.parser.add_argument('service_id', type=self.InputValidator.positive_int, help='Please provide valid service name', required=True)
         args = self.parser.parse_args()
         return self.reply(self.registry.remove_service(**args))
+
+
+if __name__ == '__main__':
+    RESTService.start()
