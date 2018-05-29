@@ -11,3 +11,7 @@ class Registry(object):
         self.conn.execute('DROP TABLE IF EXISTS services')
         self.conn.execute('CREATE TABLE IF NOT EXISTS `services` (id INTEGER PRIMARY KEY AUTOINCREMENT, service TEXT, version TEXT)')
 
+    def add_service(self, service, version):
+        rows = self.conn.execute("INSERT INTO services (service, version) VALUES (?, ?)", [service, version]).rowcount
+        return "created" if rows == 1 else "error"
+
