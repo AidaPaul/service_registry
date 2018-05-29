@@ -56,3 +56,9 @@ def step_impl(context):
 @then(u'I should be notified with a change "{change}"')
 def step_impl(context, change):
     assert context.response.json()['result'] == change, context.response.text
+
+
+@then(u'I should find count "{count:d}" instances of service')
+@then(u'I should find count "{count:d}" services')
+def step_impl(context, count):
+    assert len(context.response.json()['result']) == count, context.response.text
