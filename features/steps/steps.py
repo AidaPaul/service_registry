@@ -23,3 +23,12 @@ def step_impl(context, service, version=None):
         'version': version
     }
     context.response = get(URL, data=data)
+
+
+@when(u'I update a service')
+def step_impl(context):
+    data = {
+        'service_id': 1,
+        'version': '1.3.3.7'
+    }
+    context.response = put(URL, data=data)
