@@ -69,3 +69,10 @@ def step_impl(context, service):
     result = context.response.json()['result']
     for res in result:
         assert res['service'] == service, "{0} != {1}".format(res['service'], service)
+
+
+@then(u'the service "{service}" should have the correct version "{version}"')
+def step_impl(context, service, version):
+    result = context.response.json()['result']
+    for res in result:
+        assert res['version'] == version, "{0} != {1}".format(res['version'], version)
