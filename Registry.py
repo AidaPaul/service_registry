@@ -15,3 +15,7 @@ class Registry(object):
         rows = self.conn.execute("INSERT INTO services (service, version) VALUES (?, ?)", [service, version]).rowcount
         return "created" if rows == 1 else "error"
 
+    def remove_service(self, service_id):
+        rows = self.conn.execute("DELETE FROM services WHERE id = ?", [service_id]).rowcount
+        return "removed" if rows == 1 else "error"
+
