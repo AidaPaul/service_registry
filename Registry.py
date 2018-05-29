@@ -7,3 +7,7 @@ class Registry(object):
         self.conn.isolation_level = None
         self.conn.row_factory = sqlite3.Row
 
+    def reset(self):
+        self.conn.execute('DROP TABLE IF EXISTS services')
+        self.conn.execute('CREATE TABLE IF NOT EXISTS `services` (id INTEGER PRIMARY KEY AUTOINCREMENT, service TEXT, version TEXT)')
+
