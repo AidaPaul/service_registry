@@ -32,3 +32,13 @@ def step_impl(context):
         'version': '1.3.3.7'
     }
     context.response = put(URL, data=data)
+
+
+@when(u'I remove a service')
+def step_impl(context):
+    context.services = get(URL).json()['result']
+    context.service_id = 1
+    data = {
+        'service_id': context.service_id
+    }
+    context.response = delete(URL, data=data)
