@@ -51,3 +51,8 @@ def step_impl(context):
 
     for service in services:
         assert service['id'] != context.service_id, "Wrong service removed"
+
+
+@then(u'I should be notified with a change "{change}"')
+def step_impl(context, change):
+    assert context.response.json()['result'] == change, context.response.text
