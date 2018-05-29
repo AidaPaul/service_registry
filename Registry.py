@@ -19,3 +19,7 @@ class Registry(object):
         rows = self.conn.execute("DELETE FROM services WHERE id = ?", [service_id]).rowcount
         return "removed" if rows == 1 else "error"
 
+    def update_service_version(self, service_id, version):
+        rows = self.conn.execute("UPDATE services SET version = ? WHERE id = ?", [version, service_id]).rowcount
+        return "changed" if rows == 1 else "error"
+
