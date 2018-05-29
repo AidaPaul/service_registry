@@ -42,3 +42,12 @@ def step_impl(context):
         'service_id': context.service_id
     }
     context.response = delete(URL, data=data)
+
+
+@then(u'the service should be removed')
+def step_impl(context):
+    services = get(URL).json()['result']
+    assert len(services) == len(context.services) - 1, "Service not removed"
+
+    for service in services:
+        assert service['id'] != context.service_id, "Wrong service removed"
