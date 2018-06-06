@@ -29,7 +29,7 @@ class RESTService(Resource):
         def positive_int(i):
             i = int(i)
             if i < 1:
-                raise reqparse.exceptions.BadRequest("Param can not be empty")
+                raise reqparse.exceptions.BadRequest("Param has to be greater than zero")
             return i
 
     @staticmethod
